@@ -1,0 +1,19 @@
+{
+  "name": "elevator",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "git": "^0.1.5",
+    "npm": "^6.2.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-motion": "^0.5.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "PORT=35578 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

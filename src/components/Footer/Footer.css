@@ -1,0 +1,14 @@
+.footer {
+	margin: 0px 15px 0px 15px;
+	background-color: #158da0;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	text-align: center;
+	border: 1px solid #2d2d2d26;
+}
+
+#footer {
+	font-family: lobster;
+	color: #2d2d2d;
+}
