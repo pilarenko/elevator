@@ -9,3 +9,6 @@ I kind of fell in love with my Elevelator, so I'm planning to update it every on
 3. Tweaking the elevator alghoritm: currently, it only recognizes a few scenarios and although they may cover 80% of the use case, it's very likely that you can still crash it
 4. Random elevator configuration at the page opening
 
+You may see the live version of the website here: https://priceless-shannon-14664c.netlify.com/.
+
+Enjoy!
