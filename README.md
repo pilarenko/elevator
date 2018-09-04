@@ -8,6 +8,7 @@ I kind of fell in love with my Elevelator, so I'm planning to update it every on
 2. Using CSS modules: I planned to do it from the go, but I encountered some npm/create-react-app troubles along the way, so I skipped that step
 3. Tweaking the elevator alghoritm: currently, it only recognizes a few scenarios and although they may cover 80% of the use case, it's very likely that you can still crash it
 4. Random elevator configuration at the page opening
+5. Fix the floor input on mobile
 
 You may see the live version of the website here: https://priceless-shannon-14664c.netlify.com/.
 
