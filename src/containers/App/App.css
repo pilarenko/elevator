@@ -46,17 +46,17 @@
         display: block;
     }
     [class*='display'] {
-      width: 157%;
+      width: 61.5vw;
       min-height: 0px !important;
       margin-bottom: 8%;
     }
     [class*="control"] {
-      width: 371%;
       height: 100%;
+      width: 61.5vw;
+
     }
     [class*="social"] {
-      max-width: 33% !important;
-      margin: 6px 0px 0px 0px;
+        left: 55%;
     }     
     [id*="level"] {
       font-size: 80%;
@@ -65,6 +65,7 @@
       height: 80px;
       max-width: 20% !important;
       border-bottom: 1px solid black;
+      margin-left: 10px;
     }
     [class*='add'] {
       direction: rtl;
@@ -78,7 +79,11 @@
     }
     [class*="elevator"] {
       max-height: 40px !important;
+      width: 75% !important;
     }  
+    [class*='lane'] {
+      margin-left: 5px;
+    }
     [class*="fa-male"] {
       margin: 50px auto 0px auto !important;
     }     
@@ -90,6 +95,10 @@
     }     
     [class*='container-fluid'] {
       width: 100%;
+      margin: 0 auto;
+    }
+    [class*='navbar'] {
+      display: block;
     }
 }
 
