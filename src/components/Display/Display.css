@@ -58,6 +58,7 @@ i.fa-male {
 .form-control {
 	width: 45%;
 	text-align: center;
+	height: 4vh;
 }
 
 .floorCheck {

@@ -24,7 +24,7 @@ import {Motion, spring} from "react-motion";
 		first.push(human);
 		floorFirst = 	
 		<div className = "floorCheck first">
-			<input type="input" className="form-control" name = "confirm" placeholder="Floor:"/>
+			<input type="input" className="form-control" name = "confirm" placeholder="Floor"/>
 			<i className="confirm fas fa-check" onClick = {props.confirm}></i>
 		</div>;
 		firstCount = firstCount - 1;
@@ -34,7 +34,7 @@ import {Motion, spring} from "react-motion";
 		second.push(human);
 		floorSecond = 	
 		<div className = "floorCheck second">
-			<input type="input" className="form-control" name = "confirm" placeholder="Floor:"/>
+			<input type="input" className="form-control" name = "confirm" placeholder="Floor"/>
 			<i className="confirm fas fa-check" onClick = {props.confirm}></i>
 		</div>;
 		secondCount = secondCount - 1;
@@ -44,7 +44,7 @@ import {Motion, spring} from "react-motion";
 		third.push(human);
 		floorThird = 	
 		<div className = "floorCheck third">
-			<input type="input" className="form-control" name = "confirm" placeholder="Floor:"/>
+			<input type="input" className="form-control" name = "confirm" placeholder="Floor"/>
 			<i className="confirm fas fa-check" onClick = {props.confirm}></i>
 		</div>;
 		thirdCount = thirdCount - 1;

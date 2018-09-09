@@ -139,7 +139,7 @@ class App extends Component {
 		if ((uniqueOrder[uniqueOrder.length] === 0) || (sumOfArray(unsortedOrder) >= 4)) {
 			uniqueOrder = [...new Set(unsortedOrder)].sort();
 		}
-		if ((unsortedOrder[0] === 0) || (countInArray(unsortedOrder, 0) > 1) || (countInArray(unsortedOrder, 1) > 1) || (countInArray(unsortedOrder, 2) > 1)) {
+		if ((unsortedOrder[0] === 0) || (countInArray(unsortedOrder, 0) > 1) || (countInArray(unsortedOrder, 2) > 1)) {
 			uniqueOrder = [...new Set(unsortedOrder)].sort((a, b) => b - a);			
 			console.log("Tutaj");
 		} 
