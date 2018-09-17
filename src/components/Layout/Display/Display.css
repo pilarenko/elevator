@@ -17,5 +17,6 @@ h1 {
     width: 100%;
     margin-top: 5px;
     order: 2;
+    min-height: 0px;
   }
 }
