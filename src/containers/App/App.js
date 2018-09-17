@@ -1,11 +1,11 @@
-import React, {
-	Component
-} from 'react';
-import './App.css';
+import React, { Component } from 'react';
+
+import Hug from '../../components/Hug/Hug';
 import Navbar from '../../components/Navbar/Navbar';
-import Display from '../../components/Display/Display';
 import Footer from '../../components/Footer/Footer';
-import Control from '../../components/Control/Control';
+import Layout from '../../components/Layout/Layout';
+
+import classes from './App.css';
 
 class App extends Component {
 	state = {
@@ -28,10 +28,11 @@ class App extends Component {
 			third: 0,
 		},
 		upwards: true,
+		error: "",
 	};
 
 	addQueueClick = (event) => {
-		const target = event.target.classList[0];
+		const target = event.target.getAttribute("name");
 		let passengersState = {
 			first: 0,
 			second: 0,
@@ -40,33 +41,27 @@ class App extends Component {
 
 		if (this.state.passengers[target] < 3) {
 			passengersState[target] += 1;
+			this.setState({
+				passengers: {
+					first: this.state.passengers.first + passengersState["first"],
+					second: this.state.passengers.second + passengersState["second"],
+					third: this.state.passengers.third + passengersState["third"],
+				}
+			})
 		} else {
-			const alert = document.getElementsByClassName("alert")[0];
-			const alertText = document.getElementsByClassName("alertText")[0];
-			alertText.innerText = "You cannot add more people!";	
-			alert.style.display="inherit";
+			this.setState({
+				error: "You cannot add more people!",
+			});
 
 			setTimeout(() => {
-				alert.classList.add("fadeOut");
-			}, 3000);
-
-			setTimeout(() => {
-				alert.style.display="none";
-				alert.classList.remove("fadeOut");
+				this.setState({
+					error: "",
+				});
 			}, 3100);
 		}
-
-		this.setState({
-			passengers: {
-				first: this.state.passengers.first + passengersState["first"],
-				second: this.state.passengers.second + passengersState["second"],
-				third: this.state.passengers.third + passengersState["third"],
-			}
-		})
 	}
 
 	loadPassengers = (event) => {
-
 		function countInArray(array, int) {
 			let count = 0;
 			for (let i = 0; i < array.length; i++) {
@@ -85,12 +80,13 @@ class App extends Component {
 			return sum;
 		}
 
-		const floorName = event.target.parentElement.classList[1];
-		const floor = ["first", "second", "third"].reverse();
+		const floorName = event.target.previousSibling.getAttribute("name");
+
+		const floor = (Object.keys(this.state.passengers)).reverse();
 		let elevatorCount = this.state.elevator;
 		let currentFloor = this.state.number;
 		let unsortedOrder = [...this.state.order];
-		let pickUpFloor = floor.indexOf(event.target.parentElement.classList[1]);
+		let pickUpFloor = floor.indexOf(floorName);
 
 		if ((event.target.previousSibling.value >= 0) && (event.target.previousSibling.value <= 2))	{	
 			if (event.target.parentElement.classList[1] === "third") {
@@ -98,67 +94,60 @@ class App extends Component {
 			} else {
 				unsortedOrder.push(parseInt(event.target.previousSibling.value, 10), pickUpFloor);
 			}
+
+			let floorState = {
+				first: 0,
+				second: 0,
+				third: 0,
+			};
+
+			let passState = {
+				first: 0,
+				second: 0,
+				third: 0,
+			};
+			
+			if (floor[currentFloor] === floorName) {
+				elevatorCount += 1;
+				passState[floorName] += 1;
+			}
+
+			floorState[floor[event.target.previousSibling.value]] += 1;
+			let uniqueOrder = [...new Set(unsortedOrder)];
+			if ((uniqueOrder[uniqueOrder.length] === 0) || (sumOfArray(unsortedOrder) >= 4)) {
+				uniqueOrder = [...new Set(unsortedOrder)].sort();
+			}
+			if ((unsortedOrder[0] === 0) || (countInArray(unsortedOrder, 0) > 1) || (countInArray(unsortedOrder, 2) > 1)) {
+				uniqueOrder = [...new Set(unsortedOrder)].sort((a, b) => b - a);			
+			} 
+
+			this.setState({
+				elevator: elevatorCount,
+				order: uniqueOrder,
+				drop: {
+					first: this.state.drop.first + floorState["first"],
+					second: this.state.drop.second + floorState["second"],
+					third: this.state.drop.third + floorState["third"],
+				},
+				passengers: {
+					first: this.state.passengers.first - passState["first"],
+					second: this.state.passengers.second - passState["second"],
+					third: this.state.passengers.third - passState["third"],
+				}
+			});
+
+
 		} else {
-			const alert = document.getElementsByClassName("alert")[0];
-			const alertText = document.getElementsByClassName("alertText")[0];
-			alertText.innerText = "Type correct value!";	
-			alert.style.display="inherit";
+			this.setState({
+				error: "Type correct value!",
+			});
 
 			setTimeout(() => {
-				alert.classList.add("fadeOut");
-			}, 3000);
-
-			setTimeout(() => {
-				alert.style.display="none";
-				alert.classList.remove("fadeOut");
+				this.setState({
+					error: "",
+				});
 			}, 3100);
 		}
-		let floorState = {
-			first: 0,
-			second: 0,
-			third: 0,
-		};
-
-		let passState = {
-			first: 0,
-			second: 0,
-			third: 0,
-		};
-		
-		if (floor[currentFloor] === event.target.parentElement.classList[1]) {
-			elevatorCount += 1;
-			passState[floorName] += 1;
-		}
-
-		console.log("unsortedOrder:");
-		console.log(unsortedOrder);
-		floorState[floor[event.target.previousSibling.value]] += 1;
-		let uniqueOrder = [...new Set(unsortedOrder)];
-		console.log("uniqueOrder:");
-		console.log(uniqueOrder);
-		if ((uniqueOrder[uniqueOrder.length] === 0) || (sumOfArray(unsortedOrder) >= 4)) {
-			uniqueOrder = [...new Set(unsortedOrder)].sort();
-		}
-		if ((unsortedOrder[0] === 0) || (countInArray(unsortedOrder, 0) > 1) || (countInArray(unsortedOrder, 2) > 1)) {
-			uniqueOrder = [...new Set(unsortedOrder)].sort((a, b) => b - a);			
-			console.log("Tutaj");
-		} 
-		console.log("uniqueOrder2:");
-		console.log(uniqueOrder);
-		this.setState({
-			elevator: elevatorCount,
-			order: uniqueOrder,
-			drop: {
-				first: this.state.drop.first + floorState["first"],
-				second: this.state.drop.second + floorState["second"],
-				third: this.state.drop.third + floorState["third"],
-			},
-			passengers: {
-				first: this.state.passengers.first - passState["first"],
-				second: this.state.passengers.second - passState["second"],
-				third: this.state.passengers.third - passState["third"],
-			}
-		});
 	}
 
 	dropPassengers = (event) => {
@@ -201,7 +190,7 @@ class App extends Component {
 						third: 0,
 					};
 
-					let x = 90 * floorDif;
+					let x = 102 * floorDif;
 					tempPassState[floors[currentFloor]] = this.state.passengers[floors[currentFloor]];
 
 					setTimeout(() => {
@@ -227,8 +216,6 @@ class App extends Component {
 					};
 
 					tempDropState[floors[order[i]]] += this.state.drop[floors[order[i]]];
-					console.log("tempDropState: ");
-					console.table(tempDropState);
 
 					setTimeout(() => {
 						this.setState({
@@ -264,7 +251,7 @@ class App extends Component {
 						});
 					}, delay * 3 * iterationDelays[i]);
 
-					let x = 90 * floorDif;
+					let x = 102 * floorDif;
 
 					let tempPassState = {
 						first: 0,
@@ -280,11 +267,7 @@ class App extends Component {
 						third: 0,
 					};
 
-					// console.log("floors[currentFloor]: " + floors[currentFloor]);
 					tempDropState[floors[order[i]]] += this.state.drop[floors[order[i]]];
-					console.log("tempDropState: ");
-					console.table(tempDropState);
-					console.log("toPickUp: " + toPickUp);
 
 					setTimeout(() => {
 						this.setState({
@@ -309,82 +292,32 @@ class App extends Component {
 					}, delay * 8 * iterationDelays[i]);
 				}
 			}
-
 		}, 1000);
-
 	}
 
 	render() {
-		const fontStyle = {
-			fontFamily: 'sunrise',
-		};
+		return (
+			<div className={classes.App}>
+				<Hug>
+			    <Navbar />
+		    	<Layout
+			    	clicked={this.addQueueClick}
+			    	passengers={this.state.passengers}
+			    	elevator={this.state.elevator}
+			    	confirm={this.loadPassengers}
+			    	drop={this.dropPassengers}
+			    	
+			    	text={this.state.text} 
+			    	number={this.state.number} 
 
-		const dispStyle = {
-			padding: '.5rem 1rem',
-			paddingTop: '0.5rem',
-			paddingRight: '1rem',
-			paddingBottom: '0.5rem',
-			paddingLeft: '1rem',
-		}
+			    	defaultStyle = {this.state.position.defaultStyle}
+			    	style = {this.state.position.style}
 
-		return ( <
-			div className = 'container-fluid'
-			style = {
-				fontStyle
-			} >
-			<
-			Navbar / >
-			<
-			div className = 'row content'
-			style = {
-				dispStyle
-			} >
-			<
-			div className = "col-8" >
-			<
-			Display defaultStyle = {
-				this.state.position.defaultStyle
-			}
-			style = {
-				this.state.position.style
-			}
-			clicked = {
-				this.addQueueClick
-			}
-			passengers = {
-				this.state.passengers
-			}
-			elevator = {
-				this.state.elevator
-			}
-			confirm = {
-				this.loadPassengers
-			}
-			drop = {
-				this.dropPassengers
-			}
-			/> < /
-			div > <
-			div className = "col-4 cleared" >
-			<
-			Control text = {
-				this.state.text
-			}
-			number = {
-				this.state.number
-			}
-			/> < /
-			div > <
-			/div> <
-			div className = 'row'
-			style = {
-				dispStyle
-			} >
-			<
-			Footer / >
-			<
-			/div> < /
-			div >
+			    	error = {this.state.error}
+		    	/>
+		      <Footer />
+	      </Hug>
+		  </div>
 		);
 	}
 }

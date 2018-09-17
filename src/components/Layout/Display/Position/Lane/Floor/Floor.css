@@ -1,0 +1,13 @@
+.floor {
+	border-bottom: 1px solid black;
+	height: 100px;
+	display: inline-flex;
+	position: relative;
+}
+
+.human {
+	bottom: 0;
+	font-size: 40px;
+	margin: 60px auto 0px auto;
+	display: block;
+}

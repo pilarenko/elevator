@@ -1,0 +1,25 @@
+.elevator {
+	margin: 0px auto;
+	background-color: #9f23d1;
+	border: 1.5px solid black;
+	width: 22%;
+	height: 52px;
+	position: relative;
+	font-family: Lato;
+	color: black;
+}
+
+.shaft {
+	width: 30%;
+	max-height: 84.5%;
+	display: block;
+}
+
+@media only screen and (max-width: 676px) {
+  [class*="shaft"] {
+    width: 15%;
+  }
+  [class*="elevator"] {
+ 		width: 50%;
+  }
+}

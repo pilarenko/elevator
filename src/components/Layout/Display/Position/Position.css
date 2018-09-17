@@ -1,0 +1,14 @@
+.position {
+	background-color: #ccfdf2;
+	width: 95%;
+	margin: 10px auto 10px auto;
+	display: flex;
+	padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 676px) {
+  [class*="position"] {
+    padding-bottom: 0px; 
+    margin: 10px auto;
+  }
+}

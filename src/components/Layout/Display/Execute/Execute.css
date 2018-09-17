@@ -1,0 +1,23 @@
+.execute {
+
+}
+
+.executeBtn {
+	background-color: #17a2b8;
+	color: #fff;
+	font-weight: 400;
+	text-align: center;
+	display: inline-block;
+	font-size: 1.75rem;
+	margin: 10px auto;
+	padding: .5rem 1rem;
+	border-radius: .3rem;
+	border: none;
+	cursor: pointer;
+	height: 40%;
+}
+
+.executeBtn:hover {
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 20px 0px;
+	
+}

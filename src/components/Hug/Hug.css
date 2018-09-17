@@ -1,0 +1,10 @@
+.hug {
+	width: 85%;
+	margin: 0 auto;
+}
+
+@media only screen and (max-width: 676px) {
+  [class*="hug"] {
+    width: 98%;
+  }
+}

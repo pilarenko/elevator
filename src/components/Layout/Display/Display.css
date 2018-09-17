@@ -1,0 +1,21 @@
+.display {
+	width: 70%;
+	background-color: #55c5bf;
+	display: grid;
+	margin-right: 5px;
+	min-height: 650px;
+	box-shadow: 0 1px 5px rgba(0,0,0,.15);
+	color: #2d2d2d;
+}
+
+h1 {
+	margin: 5px 0px;
+}
+
+@media only screen and (max-width: 676px) {
+  [class*="display"] {
+    width: 100%;
+    margin-top: 5px;
+    order: 2;
+  }
+}

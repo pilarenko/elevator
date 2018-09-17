@@ -1,0 +1,50 @@
+.floor {
+	background-color: #ddfffc;
+	margin: 10px auto 20px auto;
+	width: 95%;
+	height: 40%;
+	display: grid;
+	border: 1px solid #2d2d2d66;
+}
+
+.floorText {
+	color: #2d2d2d;
+	font-size: 1.75rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.floorNumber {
+	font-family: sans-serif;
+	font-size: 1.75rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+ 
+.courtesy {
+	width: 80%;
+	background-color: #f4fffefa;
+	border: 1px solid #2d2d2dad;
+	text-align: center;
+	border-radius: 3px;
+	margin: 10px auto;
+	font-family: sans-serif;
+	max-height: 40%;
+}
+
+.culturalText {
+	font-size: 1.25rem;
+	font-weight: 500;
+	color: #2d2d2d;
+	margin: 5px 0px;
+	padding: 0;
+}
+
+@media only screen and (max-width: 676px) {
+  [class*="culturalText"] {
+    margin: 10px 0px;
+  }
+  [class*="courtesy"] {
+  	max-height: 50%;
+  }
+}

@@ -1,14 +1,15 @@
-.footer {
-	margin: 0px 15px 0px 15px;
-	background-color: #158da0;
-	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
-	text-align: center;
-	border: 1px solid #2d2d2d26;
+.footer	 {
+  background-color: #158da0;
+  text-align: center;
+  margin: 10px 0px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.15);
+  color: #2d2d2d;
 }
 
-#footer {
-	font-family: lobster;
-	color: #2d2d2d;
+.footerText {
+	padding: 20px 0px;
+}
+
+h3 {
+	margin: 0;
 }
